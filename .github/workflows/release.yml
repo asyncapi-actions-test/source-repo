@@ -23,5 +23,5 @@ jobs:
       - name: Bump version and publish to NPM
         run: npx semantic-release
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
