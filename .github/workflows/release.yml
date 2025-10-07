@@ -20,7 +20,13 @@ jobs:
         run: npm install
 
       - name: Bump version and publish to NPM
-        run: npx semantic-release
+        uses: cycjimmy/semantic-release-action@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        with:
+          extra-plugins: |
+            @semantic-release/npm
+            @semantic-release/github
+            @semantic-release/git
+          branch: master
