@@ -25,9 +25,12 @@ jobs:
       - name: Check if Node.js project and has package.json
         id: packagejson
         run: test -e ./package.json && echo "exists=true" >> $GITHUB_OUTPUT || echo "exists=false" >> $GITHUB_OUTPUT
+      - name: Setup corepack with pnpm and yarn
+        if: steps.packagejson.outputs.exists == 'true'
+        run: corepack enable
       - if: steps.packagejson.outputs.exists == 'true'
         name: Bumping latest version of this package in other repositories
-        uses: Shurtu-gal/npm-dependency-manager-for-your-github-org@7eb8d7101047f313e230c80adf326a53d2f4965b # using v6.-.- https://github.com/derberg/npm-dependency-manager-for-your-github-org/releases/tag/v6
+        uses: Shurtu-gal/npm-dependency-manager-for-your-github-org@bd61e444df929c7bed5d5f5062e22e9675ce9f6b # using v6.-.- https://github.com/derberg/npm-dependency-manager-for-your-github-org/releases/tag/v6
         with:
           github_token: ${{ secrets.GH_TOKEN }}
           committer_username: asyncapi-bot
