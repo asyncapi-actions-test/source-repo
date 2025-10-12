@@ -33,3 +33,4 @@ jobs:
           committer_username: asyncapi-bot
           committer_email: info@asyncapi.io
           custom_id: "BUMP_TEST"
+          search: "true"
